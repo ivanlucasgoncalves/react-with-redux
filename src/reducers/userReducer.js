@@ -7,7 +7,7 @@ const initialState = {
 }
 
 // User
-export default function userReducer(state = initialState, action) {
+const userReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_USER:
 			return action.payload
@@ -15,3 +15,5 @@ export default function userReducer(state = initialState, action) {
 			return state
 	}
 }
+
+export default userReducer
