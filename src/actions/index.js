@@ -15,29 +15,25 @@ export const fetchUser = () => dispatch => {
 }
 
 export const fetchTweets = () => dispatch => {
-	fetch('https://my-json-server.typicode.com/typicode/demo/posts')
-		.then(res => res.json())
-		.then(tweets =>
-			dispatch({
-				type: FETCH_TWEETS,
-				payload: tweets
-			})
-		)
+	dispatch({
+		type: FETCH_TWEETS,
+		payload: fetch('https://my-json-server.typicode.com/typicode/demo/posts')
+			.then(res => res.json())
+			.then(tweets => tweets)
+	})
 }
 
 export const postComment = data => dispatch => {
-	fetch('https://jsonplaceholder.typicode.com/posts', {
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json'
-		},
-		body: JSON.stringify(data)
+	dispatch({
+		type: 'POST_COMMENT',
+		payload: fetch('https://jsonplaceholder.typicode.com/posts', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+			.then(res => res.json())
+			.then(comment => comment)
 	})
-		.then(res => res.json())
-		.then(comment =>
-			dispatch({
-				type: 'POST_COMMENT',
-				payload: comment
-			})
-		)
 }

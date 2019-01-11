@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import './App.scss'
 
 import { fetchUser, fetchTweets, postComment } from '../actions'
-import Sidebar from './Sidebar'
+import Sidebar from '../components/Sidebar'
 
 class App extends React.Component {
 	componentDidMount() {
@@ -64,11 +63,13 @@ const mapStateToProps = state => ({
 	comment: state.comment
 })
 
+const mapDispatchToProps = {
+	fetchUser,
+	fetchTweets,
+	postComment
+}
+
 export default connect(
 	mapStateToProps,
-	{
-		fetchUser,
-		fetchTweets,
-		postComment
-	}
+	mapDispatchToProps
 )(App)
